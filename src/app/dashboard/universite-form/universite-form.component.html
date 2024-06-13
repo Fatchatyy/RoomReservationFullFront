@@ -1,0 +1,39 @@
+<form #f="ngForm" (ngSubmit)="add(f)">
+   
+    <div class="mb-3">
+        <label class="form-label">
+            Nom universite
+        </label>
+        <input class="form-control" name="firstName" type="text" 
+        [(ngModel)]="universite.nomUniversite" required minlength="3" pattern="[a-zA-Z]*" #firstName="ngModel">
+        <div class="alert alert-danger" 
+        *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)">
+                <div *ngIf="firstName.errors!['required']">Name is required !</div> 
+                <div *ngIf="firstName.errors!['minlength']">Name must have at least 3 characters !</div>
+                <div *ngIf="firstName.errors!['pattern']">Name invalid !</div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">
+            Adress
+        </label>
+        <input class="form-control" name="lastName" type="text" [(ngModel)]="universite.adresse" #lastName="ngModel" required minlength="3" pattern="[a-zA-Z]*" >
+        <div class="alert alert-danger" *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)">
+            <div *ngIf="lastName.errors!['required']">Adress is required </div>
+            <div *ngIf="lastName.errors!['minlength']">Adress must have at least 3 characters !</div>
+            <div *ngIf="lastName.errors!['pattern']">Adress invalid !</div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        
+        <input type="submit" [value]="getButtonMessage()" [disabled]="f.invalid" (click)="showNotification('success', 'L universite est bien inscrit.')">
+        <notifier-container></notifier-container>
+        <ng-template #customTemplate let-notification="notification">
+            <div>
+              <strong>{{ notification.type }}:</strong> {{ notification.message }}
+            </div>
+          </ng-template>
+
+    </div>
+</form>

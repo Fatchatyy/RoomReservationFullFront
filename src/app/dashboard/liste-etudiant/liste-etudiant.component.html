@@ -1,0 +1,59 @@
+<div class="container CustomerContainer">
+<!-- Les boutons pour trier la liste des étudiants -->
+<button (click)="sortStudents('nomEt')">
+  Tri par nom {{ sortAscending ? 'ascendant' : 'descendant' }}
+ </button>
+ <input type="text" [(ngModel)]="filterName" placeholder="Filtrer par nom">
+    <div class="card custermercard w-100">
+        <div class="card-body w-100">
+          <button class="btn btn-primary"  [routerLink]="['/dashboard/add/etudiant']">
+                   
+            Add
+        
+        </button>
+        <button class="btn btn-secondary" (click)="downloadPDF()">Télécharger PDF</button>
+            <table class="table table-striped w-100 ">
+                <thead>
+                  <tr>
+                    <th scope="col">identifiant etudiant</th>
+                    <th scope="col">nom etudiant</th>
+                    <th scope="col">prenom etudiant</th>
+                    <th scope="col">carte identite</th>
+                    <th scope="col">ecole</th>
+                    <th scope="col">date naissance</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let etudiant of Listeetudiant| filter : filterName">
+                  <tr > 
+                    <th scope="row">{{etudiant.idEtudiant}}</th>
+                    <td>{{etudiant.nomEt}}</td>
+                    <td>{{etudiant.prenomEt}}</td>
+                    <td>{{etudiant.cin}}</td>
+                    <td>{{etudiant.ecole}}</td>
+                    <td>{{etudiant.dateNaissance}}</td>
+                    <td style="width: 20%;">
+                      <button class="btn btn-primary" (click) = "ToDetails(etudiant)">
+                          Find etudiant
+                      </button>
+                      <button class="btn btn-success" [routerLink]="['/dashboard/update/etudiant',etudiant.idEtudiant]">
+                   
+                          Update
+                     
+                  </button>
+                  
+                      <button class="btn btn-danger"  (click) ="deleteEtudiant(etudiant.idEtudiant)" >
+                         Delete
+                      </button>
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div>
+                <button (click)="previousPage()">Previous</button>
+                <span>Page {{ currentPage }} of {{ totalPages }}</span>
+                <button (click)="nextPage()">Next</button>
+              </div>
+        </div>
+      </div>
+<router-outlet></router-outlet>
+</div>

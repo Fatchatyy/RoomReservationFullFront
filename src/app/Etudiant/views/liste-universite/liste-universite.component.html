@@ -1,0 +1,34 @@
+<div class="container CustomerContainer">
+        <div class="card custermercard w-100">
+            <div class="card-body w-100">
+              
+            
+                <table class="table table-striped w-100 ">
+                    <thead>
+                      <tr>
+                        <th scope="col">identifiant universite</th>
+                        <th scope="col">nom universite</th>
+                        <th scope="col">adress</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let universite of Listeuniversite">
+                      <tr > 
+                        <th scope="row">{{universite.idUniversite}}</th>
+                        <td>{{universite.nomUniversite}}</td>
+                        <td>{{universite.adresse}}</td>
+                        <td style="width: 20%;">
+                        
+                      </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                 <!--<div>
+                    <button (click)="previousPage()">Previous</button>
+                    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+                    <button (click)="nextPage()">Next</button>
+                  </div>--> 
+            </div>
+          </div>
+   
+    </div>
+    

@@ -1,0 +1,68 @@
+
+<form #f="ngForm" (ngSubmit)="add(f)">
+   
+    <div class="mb-3">
+        <label class="form-label">
+            Nom Etudiant
+        </label>
+        <input class="form-control" name="firstName" type="text" 
+        [(ngModel)]="etudiant.nomEt" required minlength="3" pattern="[a-zA-Z]*" #firstName="ngModel">
+        <div class="alert alert-danger" 
+        *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)">
+                <div *ngIf="firstName.errors!['required']">FirstName is required !</div> 
+                <div *ngIf="firstName.errors!['minlength']">FirstName must have at least 3 characters !</div>
+                <div *ngIf="firstName.errors!['pattern']">FirstName invalid !</div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">
+            Prenom Etudiant
+        </label>
+        <input class="form-control" name="lastName" type="text" [(ngModel)]="etudiant.prenomEt" #lastName="ngModel" required minlength="3" pattern="[a-zA-Z]*" >
+        <div class="alert alert-danger" *ngIf="lastName.invalid && (lastName.touched || lastName.dirty)">
+            <div *ngIf="lastName.errors!['required']">Last Name is required </div>
+            <div *ngIf="lastName.errors!['minlength']">Last Name must have at least 3 characters !</div>
+            <div *ngIf="lastName.errors!['pattern']">Last Name invalid !</div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">
+            CIN
+        </label>
+        <input class="form-control" name="cin" type="text" [(ngModel)]="etudiant.cin"  #cin="ngModel" required  minlength="8" maxlength="8" pattern="[0-9]*">
+        <div class="alert alert-danger" *ngIf="cin.invalid && (cin.touched || cin.dirty)">
+            <div *ngIf="cin.errors!['required']">cin is required!</div>
+            <div *ngIf="firstName.errors!['minlength']">cin must have at least 8 numbers!</div>
+            <div *ngIf="firstName.errors!['maxlength']">cin must have maximum 8 numbers!</div>
+            <div *ngIf="firstName.errors!['pattern']">cin must be a valid number!</div>
+            <div *ngIf="firstName.errors!['invalidNumber']">cin must be a valid number!</div>
+          </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">
+            Ecole
+        </label>
+        <input class="form-control" name="ecole" type="text" [(ngModel)]="etudiant.ecole"  required >
+
+    </div>
+    <div class="mb-3">
+        <label class="form-label">
+            Date de naissance
+        </label>
+        <input class="form-control" name="birthDate" type="date" [(ngModel)]="etudiant.dateNaissance"  required >
+
+    </div>
+ 
+    <div class="mb-3">
+        
+        <input type="submit" [value]="getButtonMessage()" [disabled]="f.invalid" (click)="showNotification('success', 'vous etes bien inscrit.')">
+        <notifier-container></notifier-container>
+        <ng-template #customTemplate let-notification="notification">
+            <div>
+              <strong>{{ notification.type }}:</strong> {{ notification.message }}
+            </div>
+          </ng-template>
+
+    </div>
+</form>

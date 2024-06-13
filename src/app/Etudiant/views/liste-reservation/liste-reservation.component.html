@@ -1,0 +1,47 @@
+  
+  <div class="container CustomerContainer">
+   
+      <div class="card custermercard w-100">
+          <div class="card-body w-100">
+            <div class="form-group">
+           
+      
+            </div>
+              <table class="table table-striped w-100 ">
+                  <thead>
+                    <tr>
+                      <th scope="col">identifiant Reservation</th>
+                      <th scope="col">Data Reservation</th>
+                      <th scope="col">Validité </th>
+                      <th>&nbsp;</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let Reservation of listeReservation">
+                    <tr > 
+                      <th scope="row">{{Reservation.idReservation}}</th>
+                      <td>{{Reservation.anneeUniversitaire}}</td>
+                      <td>{{Reservation.estValide}}</td>
+                      <!-- <td style="width: 20%;">
+                          <button class="btn btn-primary" (click) = "ToDetails(Reservation)">
+                              Find Reservation
+                          </button>
+            
+                          <button class="btn btn-danger" (click) ="deleteRervation(Reservation.idReservation)" >
+                             Delete
+                          </button>
+                
+                      </td> -->
+                    </tr>
+                  </tbody>
+                </table>
+  
+          </div>
+        </div>
+    
+        
+      </div>
+
+
+  
+  
+

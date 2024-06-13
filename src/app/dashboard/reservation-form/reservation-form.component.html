@@ -1,0 +1,22 @@
+<form #f="ngForm" (ngSubmit)="add(f)">
+    <div class="mb-3">
+        <label class="form-label">
+            Reservation Data
+        </label>
+        <input class="form-control" name="reservationdate" type="date" 
+        [(ngModel)]="reservation.anneeUniversitaire"  #firstName="ngModel">
+  
+    </div>
+    <div class="mb-3">
+        <label class="form-label">
+            Validité
+        </label>
+        <input class="form-control" name="validité" type="text" [(ngModel)]="reservation.estValide" #lastName="ngModel" required >
+
+    </div>
+
+
+    <div class="mb-3">
+        <input type="submit" [value]="getButtonMessage()" [disabled]="f.invalid">
+    </div>
+</form>

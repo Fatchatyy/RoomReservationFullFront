@@ -1,0 +1,66 @@
+<div class="background"[class.blurred]="!captchaVerified" >
+  
+  <div class="container CustomerContainer">
+   
+      <div class="card custermercard w-100">
+          <div class="card-body w-100">
+            <div class="form-group">
+            <button class="btn btn-primary"  [routerLink]="['/dashboard/listereservation/add']">
+                       
+              Add
+         
+      </button>
+      
+            </div>
+              <table class="table table-striped w-100 ">
+                  <thead>
+                    <tr>
+                      <th scope="col">identifiant Reservation</th>
+                      <th scope="col">Data Reservation</th>
+                      <th scope="col">Validité </th>
+                      <th>&nbsp;</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor="let Reservation of listeReservation">
+                    <tr > 
+                      <th scope="row">{{Reservation.idReservation}}</th>
+                      <td>{{Reservation.anneeUniversitaire}}</td>
+                      <td>{{Reservation.estValide}}</td>
+                      <td style="width: 20%;">
+                          <button class="btn btn-primary" (click) = "ToDetails(Reservation)">
+                              Find Reservation
+                          </button>
+                          <button class="btn btn-success" [routerLink]="['/dashboard/listereservation/update',Reservation.idReservation]">
+                       
+                              Update
+                         
+                      </button>
+
+                          <button class="btn btn-danger" (click) ="deleteRervation(Reservation.idReservation)" >
+                             Delete
+                          </button>
+                        
+                        <button class="btn btn-primary" (click) ="generatePdf(Reservation.idReservation)" >
+                           Generate pdf
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+  
+          </div>
+        </div>
+     <router-outlet></router-outlet>
+        
+      </div>
+      
+  </div>
+  <div class="captcha-container" *ngIf="!captchaVerified">
+    <form (ngSubmit)="onSubmit()">
+      <div id="recaptcha-id" class="g-recaptcha" data-sitekey="6Lf2jSMpAAAAAGp3_Kjy1Fx2nbgBE2yqsDlOMG8L"></div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  
+  
+
